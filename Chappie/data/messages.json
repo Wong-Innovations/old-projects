@@ -1,0 +1,42 @@
+[
+  {
+    "content": "I am sad",
+    "sender": "SumTingWong",
+    "sentiment": -0.6666666666666666
+  },
+  {
+    "content": "and hate people",
+    "sender": "SumTingWong",
+    "sentiment": -1
+  },
+  {
+    "content": "!BIGSAD",
+    "sender": "SumTingWong",
+    "sentiment": 0
+  },
+  {
+    "content": "YES! <@550937348679139338> worked!",
+    "sender": "SumTingWong",
+    "sentiment": 0.3333333333333333
+  },
+  {
+    "content": "!shoot @me",
+    "sender": "SumTingWong",
+    "sentiment": -0.5
+  },
+  {
+    "content": "!shoot <@414997304001560579>",
+    "sender": "SumTingWong",
+    "sentiment": -0.5
+  },
+  {
+    "content": "!BIGSAD",
+    "sender": "SumTingWong",
+    "sentiment": 0
+  },
+  {
+    "content": "Sick just making sure",
+    "sender": "SumTingWong",
+    "sentiment": -0.5
+  }
+]

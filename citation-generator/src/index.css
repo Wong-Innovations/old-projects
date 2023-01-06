@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Roboto", sans-serif;
+}
+
+div.DraftEditor-root {
+  font-size: 16px;
+  padding-left: 50px ;
+  text-indent: -50px ;
+}

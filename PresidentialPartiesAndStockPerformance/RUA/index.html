@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <style>
+        .chart-container {
+            width: 1000px;
+            height: 49vh;
+        }
+
+        .chart-container-right {
+            position: absolute;
+            width: calc(100vw - 1100px);
+            height: 98vh;
+            right: 0;
+            top: 0;
+        }
+    </style>
+    <title>RUA</title>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="chart1"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="chart3"></canvas>
+    </div>
+    <div class="chart-container-right">
+        <canvas id="chart2"></canvas>
+    </div>
+    <script>
+        // function percent_calc(beginning, end, years) {
+        //     return ((end - beginning)/beginning)/years;
+        // }
+        var ctx = document.getElementById('chart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array(2020 - 1988 + 1).fill().map((_, idx) => 1988 + idx),
+                datasets: [{
+                    label: 'Democratic',
+                    data: [{ x: 1993 , y: 260.88667175 },
+                            { x: 1994 , y: 265.20249816666666 },
+                            { x: 1995 , y: 312.66333008333334 },
+                            { x: 1996 , y: 384.01833341666674 },
+                            { x: 1997 , y: 488.4833323333333 },
+                            { x: 1998 , y: 594.2766724166667 },
+                            { x: 1999 , y: 712.63916525 },
+                            { x: 2000 , y: 780.8824971666667 },
+                            { x: 2009 , y: 552.1899999999999 },
+                            { x: 2010 , y: 668.1599933333333 },
+                            { x: 2011 , y: 762.0899962499999 },
+                            { x: 2012 , y: 819.6816659166667 },
+                            { x: 2013 , y: 986.9325053333332 },
+                            { x: 2014 , y: 1160.6408283333333 },
+                            { x: 2015 , y: 1222.2458293333332 },
+                            { x: 2016 , y: 1243.3800050000002 }
+                    ],
+                    borderColor: '#1002d4',
+                    showLine: false,
+                    fill: false
+                }, {
+                    label: 'Republican',
+                    data: [{ x: 1988 , y: 152.55583191666668 },
+                            { x: 1989 , y: 184.3125 },
+                            { x: 1990 , y: 183.3808326666667 },
+                            { x: 1991 , y: 212.48333241666668 },
+                            { x: 1992 , y: 235.99250283333333 },
+                            { x: 2001 , y: 651.8966674166667 },
+                            { x: 2002 , y: 550.1700032500001 },
+                            { x: 2003 , y: 544.69083425 },
+                            { x: 2004 , y: 644.2466735 },
+                            { x: 2005 , y: 695.7233379166668 },
+                            { x: 2006 , y: 766.3433430833335 },
+                            { x: 2007 , y: 857.9866638333333 },
+                            { x: 2008 , y: 705.0216675833334 },
+                            { x: 2017 , y: 1461.3008220833333 },
+                            { x: 2018 , y: 1620.780843166667 },
+                            { x: 2019 , y: 1726.3508300000003 },
+                            { x: 2020 , y: 1866.494140666667 }
+                    ],
+                    borderColor: '#d40202',
+                    showLine: false,
+                    fill: false
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Average RUA Closing Prices'
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 16,
+                            callback: function(value, index, values) {
+                                return '$' + value;
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script>
+        var rep = {data: [{ x: 1988 , y: 13.794350999138002 },
+                            { x: 1989 , y: 25.01109023523338 },
+                            { x: 1990 , y: -8.323194486634193 },
+                            { x: 1991 , y: 29.58089113357906 },
+                            { x: 1992 , y: 6.588155800528432 },
+                            { x: 2001 , y: -12.620051946262482 },
+                            { x: 2002 , y: -22.812853090619146 },
+                            { x: 2003 , y: 28.731949145681202 },
+                            { x: 2004 , y: 10.077285559509264 },
+                            { x: 2005 , y: 4.278937298855745 },
+                            { x: 2006 , y: 13.662192873490467 },
+                            { x: 2007 , y: 3.3114319951338187 },
+                            { x: 2008 , y: -38.68730529795753 },
+                            { x: 2017 , y: 18.60931102031514 },
+                            { x: 2018 , y: -7.125775408510791 },
+                            { x: 2019 , y: 28.692098344947524 },
+                            { x: 2020 , y: 10.02965097729218 }
+                    ]}
+        var dem = {data: [{ x: 1993 , y: 8.142845017814613 },
+                            { x: 1994 , y: -2.5307077938830327 },
+                            { x: 1995 , y: 33.58259995761768 },
+                            { x: 1996 , y: 19.189564727463665 },
+                            { x: 1997 , y: 29.47024256403661 },
+                            { x: 1998 , y: 22.32207617689885 },
+                            { x: 1999 , y: 19.425831983204645 },
+                            { x: 2000 , y: -8.516216632883019 },
+                            { x: 2009 , y: 25.47644276967482 },
+                            { x: 2010 , y: 14.755553767869573 },
+                            { x: 2011 , y: -1.274973239659313 },
+                            { x: 2012 , y: 13.307097722674053 },
+                            { x: 2013 , y: 30.89215761511783 },
+                            { x: 2014 , y: 10.640006544166084 },
+                            { x: 2015 , y: -1.7113520015259132 },
+                            { x: 2016 , y: 10.765283567320648 }
+                    ]}
+        var r_avg = 0;
+        rep.data.map(function (x) { r_avg += x.y; });
+        r_avg = r_avg/rep.data.length;
+        var d_avg = 0;
+        dem.data.map(function (x) { d_avg += x.y; });
+        d_avg = d_avg/dem.data.length;
+        var ctx = document.getElementById('chart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Democratic", "Republican"],
+                datasets: [{
+                    backgroundColor: ["#1002d4", "#d40202"],
+                    data: [d_avg,r_avg]
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Average Percent Delta'
+                },
+                legend: { display: false },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 16
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 16,
+                            callback: function(value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('chart3').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array(2020 - 1988 + 1).fill().map((_, idx) => 1988 + idx),
+                datasets: [{
+                    label: 'Democratic',
+                    data: [{ x: 1993 , y: 8.142845017814613 },
+                            { x: 1994 , y: -2.5307077938830327 },
+                            { x: 1995 , y: 33.58259995761768 },
+                            { x: 1996 , y: 19.189564727463665 },
+                            { x: 1997 , y: 29.47024256403661 },
+                            { x: 1998 , y: 22.32207617689885 },
+                            { x: 1999 , y: 19.425831983204645 },
+                            { x: 2000 , y: -8.516216632883019 },
+                            { x: 2009 , y: 25.47644276967482 },
+                            { x: 2010 , y: 14.755553767869573 },
+                            { x: 2011 , y: -1.274973239659313 },
+                            { x: 2012 , y: 13.307097722674053 },
+                            { x: 2013 , y: 30.89215761511783 },
+                            { x: 2014 , y: 10.640006544166084 },
+                            { x: 2015 , y: -1.7113520015259132 },
+                            { x: 2016 , y: 10.765283567320648 }
+                    ],
+                    borderColor: '#1002d4',
+                    showLine: false,
+                    fill: false
+                }, {
+                    label: 'Republican',
+                    data: [{ x: 1988 , y: 13.794350999138002 },
+                            { x: 1989 , y: 25.01109023523338 },
+                            { x: 1990 , y: -8.323194486634193 },
+                            { x: 1991 , y: 29.58089113357906 },
+                            { x: 1992 , y: 6.588155800528432 },
+                            { x: 2001 , y: -12.620051946262482 },
+                            { x: 2002 , y: -22.812853090619146 },
+                            { x: 2003 , y: 28.731949145681202 },
+                            { x: 2004 , y: 10.077285559509264 },
+                            { x: 2005 , y: 4.278937298855745 },
+                            { x: 2006 , y: 13.662192873490467 },
+                            { x: 2007 , y: 3.3114319951338187 },
+                            { x: 2008 , y: -38.68730529795753 },
+                            { x: 2017 , y: 18.60931102031514 },
+                            { x: 2018 , y: -7.125775408510791 },
+                            { x: 2019 , y: 28.692098344947524 },
+                            { x: 2020 , y: 10.02965097729218 }
+                    ],
+                    borderColor: '#d40202',
+                    showLine: false,
+                    fill: false
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'RUA Closing Price Delta (in percent)'
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 16,
+                            callback: function(value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+</html>

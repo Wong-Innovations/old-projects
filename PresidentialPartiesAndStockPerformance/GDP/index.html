@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <style>
+        .chart-container {
+            width: 1000px;
+            height: 49vh;
+        }
+
+        .chart-container-right {
+            position: absolute;
+            width: calc(100vw - 1100px);
+            height: 98vh;
+            right: 0;
+            top: 0;
+        }
+    </style>
+    <title>GDP</title>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="chart1"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="chart3"></canvas>
+    </div>
+    <div class="chart-container-right">
+        <canvas id="chart2"></canvas>
+    </div>
+    <script>
+        // function percent_calc(beginning, end, years) {
+        //     return ((end - beginning)/beginning)/years;
+        // }
+        var ctx = document.getElementById('chart1').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array(2019 - 1930 + 1).fill().map((_, idx) => 1930 + idx),
+                datasets: [{
+                    label: 'Democratic',
+                    data: [{ x: 1933 , y: -1.2 },
+                            { x: 1934 , y: 10.8 },
+                            { x: 1935 , y: 8.9 },
+                            { x: 1936 , y: 12.9 },
+                            { x: 1937 , y: 5.1 },
+                            { x: 1938 , y: -3.3 },
+                            { x: 1939 , y: 8 },
+                            { x: 1940 , y: 8.8 },
+                            { x: 1941 , y: 17.7 },
+                            { x: 1942 , y: 18.9 },
+                            { x: 1943 , y: 17 },
+                            { x: 1944 , y: 8 },
+                            { x: 1945 , y: -1 },
+                            { x: 1946 , y: -11.6 },
+                            { x: 1947 , y: -1.1 },
+                            { x: 1948 , y: 4.1 },
+                            { x: 1949 , y: -0.6 },
+                            { x: 1950 , y: 8.7 },
+                            { x: 1951 , y: 8 },
+                            { x: 1952 , y: 4.1 },
+                            { x: 1961 , y: 2.6 },
+                            { x: 1962 , y: 6.1 },
+                            { x: 1963 , y: 4.4 },
+                            { x: 1964 , y: 5.8 },
+                            { x: 1965 , y: 6.5 },
+                            { x: 1966 , y: 6.6 },
+                            { x: 1967 , y: 2.7 },
+                            { x: 1968 , y: 4.9 },
+                            { x: 1977 , y: 4.6 },
+                            { x: 1978 , y: 5.5 },
+                            { x: 1979 , y: 3.2 },
+                            { x: 1980 , y: -0.3 },
+                            { x: 1993 , y: 2.8 },
+                            { x: 1994 , y: 4 },
+                            { x: 1995 , y: 2.7 },
+                            { x: 1996 , y: 3.8 },
+                            { x: 1997 , y: 4.4 },
+                            { x: 1998 , y: 4.5 },
+                            { x: 1999 , y: 4.8 },
+                            { x: 2000 , y: 4.1 },
+                            { x: 2009 , y: -2.5 },
+                            { x: 2010 , y: 2.6 },
+                            { x: 2011 , y: 1.6 },
+                            { x: 2012 , y: 2.2 },
+                            { x: 2013 , y: 1.8 },
+                            { x: 2014 , y: 2.5 },
+                            { x: 2015 , y: 3.1 },
+                            { x: 2016 , y: 1.7 }
+                    ],
+                    borderColor: '#1002d4',
+                    showLine: false,
+                    fill: false
+                }, {
+                    label: 'Republican',
+                    data: [{ x: 1930 , y: -8.5 },
+                            { x: 1931 , y: -6.4 },
+                            { x: 1932 , y: -12.9 },
+                            { x: 1953 , y: 4.7 },
+                            { x: 1954 , y: -0.6 },
+                            { x: 1955 , y: 7.1 },
+                            { x: 1956 , y: 2.1 },
+                            { x: 1957 , y: 2.1 },
+                            { x: 1958 , y: -0.7 },
+                            { x: 1959 , y: 6.9 },
+                            { x: 1960 , y: 2.6 },
+                            { x: 1969 , y: 3.1 },
+                            { x: 1970 , y: 0.2 },
+                            { x: 1971 , y: 3.3 },
+                            { x: 1972 , y: 5.3 },
+                            { x: 1973 , y: 5.6 },
+                            { x: 1974 , y: -0.5 },
+                            { x: 1975 , y: -0.2 },
+                            { x: 1976 , y: 5.4 },
+                            { x: 1981 , y: 2.5 },
+                            { x: 1982 , y: -1.8 },
+                            { x: 1983 , y: 4.6 },
+                            { x: 1984 , y: 7.2 },
+                            { x: 1985 , y: 4.2 },
+                            { x: 1986 , y: 3.5 },
+                            { x: 1987 , y: 3.5 },
+                            { x: 1988 , y: 4.2 },
+                            { x: 1989 , y: 3.7 },
+                            { x: 1990 , y: 1.9 },
+                            { x: 1991 , y: -0.1 },
+                            { x: 1992 , y: 3.5 },
+                            { x: 2001 , y: 1 },
+                            { x: 2002 , y: 1.7 },
+                            { x: 2003 , y: 2.9 },
+                            { x: 2004 , y: 3.8 },
+                            { x: 2005 , y: 3.5 },
+                            { x: 2006 , y: 2.9 },
+                            { x: 2007 , y: 1.9 },
+                            { x: 2008 , y: -0.1 },
+                            { x: 2017 , y: 2.3 },
+                            { x: 2018 , y: 3 },
+                            { x: 2019 , y: 2.2 }
+                    ],
+                    borderColor: '#d40202',
+                    showLine: false,
+                    fill: false
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Average GPD Growth'
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 16,
+                            callback: function(value, index, values) {
+                                return '$' + value;
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script>
+        var rep = {data: [{ x: 1930 , y: -8.5 },
+                            { x: 1931 , y: -6.4 },
+                            { x: 1932 , y: -12.9 },
+                            { x: 1953 , y: 4.7 },
+                            { x: 1954 , y: -0.6 },
+                            { x: 1955 , y: 7.1 },
+                            { x: 1956 , y: 2.1 },
+                            { x: 1957 , y: 2.1 },
+                            { x: 1958 , y: -0.7 },
+                            { x: 1959 , y: 6.9 },
+                            { x: 1960 , y: 2.6 },
+                            { x: 1969 , y: 3.1 },
+                            { x: 1970 , y: 0.2 },
+                            { x: 1971 , y: 3.3 },
+                            { x: 1972 , y: 5.3 },
+                            { x: 1973 , y: 5.6 },
+                            { x: 1974 , y: -0.5 },
+                            { x: 1975 , y: -0.2 },
+                            { x: 1976 , y: 5.4 },
+                            { x: 1981 , y: 2.5 },
+                            { x: 1982 , y: -1.8 },
+                            { x: 1983 , y: 4.6 },
+                            { x: 1984 , y: 7.2 },
+                            { x: 1985 , y: 4.2 },
+                            { x: 1986 , y: 3.5 },
+                            { x: 1987 , y: 3.5 },
+                            { x: 1988 , y: 4.2 },
+                            { x: 1989 , y: 3.7 },
+                            { x: 1990 , y: 1.9 },
+                            { x: 1991 , y: -0.1 },
+                            { x: 1992 , y: 3.5 },
+                            { x: 2001 , y: 1 },
+                            { x: 2002 , y: 1.7 },
+                            { x: 2003 , y: 2.9 },
+                            { x: 2004 , y: 3.8 },
+                            { x: 2005 , y: 3.5 },
+                            { x: 2006 , y: 2.9 },
+                            { x: 2007 , y: 1.9 },
+                            { x: 2008 , y: -0.1 },
+                            { x: 2017 , y: 2.3 },
+                            { x: 2018 , y: 3 },
+                            { x: 2019 , y: 2.2 }
+                    ]}
+        var dem = {data: [{ x: 1933 , y: -1.2 },
+                            { x: 1934 , y: 10.8 },
+                            { x: 1935 , y: 8.9 },
+                            { x: 1936 , y: 12.9 },
+                            { x: 1937 , y: 5.1 },
+                            { x: 1938 , y: -3.3 },
+                            { x: 1939 , y: 8 },
+                            { x: 1940 , y: 8.8 },
+                            { x: 1941 , y: 17.7 },
+                            { x: 1942 , y: 18.9 },
+                            { x: 1943 , y: 17 },
+                            { x: 1944 , y: 8 },
+                            { x: 1945 , y: -1 },
+                            { x: 1946 , y: -11.6 },
+                            { x: 1947 , y: -1.1 },
+                            { x: 1948 , y: 4.1 },
+                            { x: 1949 , y: -0.6 },
+                            { x: 1950 , y: 8.7 },
+                            { x: 1951 , y: 8 },
+                            { x: 1952 , y: 4.1 },
+                            { x: 1961 , y: 2.6 },
+                            { x: 1962 , y: 6.1 },
+                            { x: 1963 , y: 4.4 },
+                            { x: 1964 , y: 5.8 },
+                            { x: 1965 , y: 6.5 },
+                            { x: 1966 , y: 6.6 },
+                            { x: 1967 , y: 2.7 },
+                            { x: 1968 , y: 4.9 },
+                            { x: 1977 , y: 4.6 },
+                            { x: 1978 , y: 5.5 },
+                            { x: 1979 , y: 3.2 },
+                            { x: 1980 , y: -0.3 },
+                            { x: 1993 , y: 2.8 },
+                            { x: 1994 , y: 4 },
+                            { x: 1995 , y: 2.7 },
+                            { x: 1996 , y: 3.8 },
+                            { x: 1997 , y: 4.4 },
+                            { x: 1998 , y: 4.5 },
+                            { x: 1999 , y: 4.8 },
+                            { x: 2000 , y: 4.1 },
+                            { x: 2009 , y: -2.5 },
+                            { x: 2010 , y: 2.6 },
+                            { x: 2011 , y: 1.6 },
+                            { x: 2012 , y: 2.2 },
+                            { x: 2013 , y: 1.8 },
+                            { x: 2014 , y: 2.5 },
+                            { x: 2015 , y: 3.1 },
+                            { x: 2016 , y: 1.7 }
+                    ]}
+        var r_avg = 0;
+        rep.data.map(function (x) { r_avg += x.y; });
+        r_avg = r_avg/rep.data.length;
+        var d_avg = 0;
+        dem.data.map(function (x) { d_avg += x.y; });
+        d_avg = d_avg/dem.data.length;
+        var ctx = document.getElementById('chart2').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Democratic", "Republican"],
+                datasets: [{
+                    backgroundColor: ["#1002d4", "#d40202"],
+                    data: [d_avg,r_avg]
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Average GDP Growth'
+                },
+                legend: { display: false },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 16
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 16,
+                            callback: function(value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('chart3').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array(2019 - 1930 + 1).fill().map((_, idx) => 1930 + idx),
+                datasets: [{
+                    label: 'Democratic',
+                    data: [{ x: 1933 , y: -1.2 },
+                            { x: 1934 , y: 10.8 },
+                            { x: 1935 , y: 8.9 },
+                            { x: 1936 , y: 12.9 },
+                            { x: 1937 , y: 5.1 },
+                            { x: 1938 , y: -3.3 },
+                            { x: 1939 , y: 8 },
+                            { x: 1940 , y: 8.8 },
+                            { x: 1941 , y: 17.7 },
+                            { x: 1942 , y: 18.9 },
+                            { x: 1943 , y: 17 },
+                            { x: 1944 , y: 8 },
+                            { x: 1945 , y: -1 },
+                            { x: 1946 , y: -11.6 },
+                            { x: 1947 , y: -1.1 },
+                            { x: 1948 , y: 4.1 },
+                            { x: 1949 , y: -0.6 },
+                            { x: 1950 , y: 8.7 },
+                            { x: 1951 , y: 8 },
+                            { x: 1952 , y: 4.1 },
+                            { x: 1961 , y: 2.6 },
+                            { x: 1962 , y: 6.1 },
+                            { x: 1963 , y: 4.4 },
+                            { x: 1964 , y: 5.8 },
+                            { x: 1965 , y: 6.5 },
+                            { x: 1966 , y: 6.6 },
+                            { x: 1967 , y: 2.7 },
+                            { x: 1968 , y: 4.9 },
+                            { x: 1977 , y: 4.6 },
+                            { x: 1978 , y: 5.5 },
+                            { x: 1979 , y: 3.2 },
+                            { x: 1980 , y: -0.3 },
+                            { x: 1993 , y: 2.8 },
+                            { x: 1994 , y: 4 },
+                            { x: 1995 , y: 2.7 },
+                            { x: 1996 , y: 3.8 },
+                            { x: 1997 , y: 4.4 },
+                            { x: 1998 , y: 4.5 },
+                            { x: 1999 , y: 4.8 },
+                            { x: 2000 , y: 4.1 },
+                            { x: 2009 , y: -2.5 },
+                            { x: 2010 , y: 2.6 },
+                            { x: 2011 , y: 1.6 },
+                            { x: 2012 , y: 2.2 },
+                            { x: 2013 , y: 1.8 },
+                            { x: 2014 , y: 2.5 },
+                            { x: 2015 , y: 3.1 },
+                            { x: 2016 , y: 1.7 }
+                    ],
+                    borderColor: '#1002d4',
+                    showLine: false,
+                    fill: false
+                }, {
+                    label: 'Republican',
+                    data: [{ x: 1930 , y: -8.5 },
+                            { x: 1931 , y: -6.4 },
+                            { x: 1932 , y: -12.9 },
+                            { x: 1953 , y: 4.7 },
+                            { x: 1954 , y: -0.6 },
+                            { x: 1955 , y: 7.1 },
+                            { x: 1956 , y: 2.1 },
+                            { x: 1957 , y: 2.1 },
+                            { x: 1958 , y: -0.7 },
+                            { x: 1959 , y: 6.9 },
+                            { x: 1960 , y: 2.6 },
+                            { x: 1969 , y: 3.1 },
+                            { x: 1970 , y: 0.2 },
+                            { x: 1971 , y: 3.3 },
+                            { x: 1972 , y: 5.3 },
+                            { x: 1973 , y: 5.6 },
+                            { x: 1974 , y: -0.5 },
+                            { x: 1975 , y: -0.2 },
+                            { x: 1976 , y: 5.4 },
+                            { x: 1981 , y: 2.5 },
+                            { x: 1982 , y: -1.8 },
+                            { x: 1983 , y: 4.6 },
+                            { x: 1984 , y: 7.2 },
+                            { x: 1985 , y: 4.2 },
+                            { x: 1986 , y: 3.5 },
+                            { x: 1987 , y: 3.5 },
+                            { x: 1988 , y: 4.2 },
+                            { x: 1989 , y: 3.7 },
+                            { x: 1990 , y: 1.9 },
+                            { x: 1991 , y: -0.1 },
+                            { x: 1992 , y: 3.5 },
+                            { x: 2001 , y: 1 },
+                            { x: 2002 , y: 1.7 },
+                            { x: 2003 , y: 2.9 },
+                            { x: 2004 , y: 3.8 },
+                            { x: 2005 , y: 3.5 },
+                            { x: 2006 , y: 2.9 },
+                            { x: 2007 , y: 1.9 },
+                            { x: 2008 , y: -0.1 },
+                            { x: 2017 , y: 2.3 },
+                            { x: 2018 , y: 3 },
+                            { x: 2019 , y: 2.2 }
+                    ],
+                    borderColor: '#d40202',
+                    showLine: false,
+                    fill: false
+                }]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Average GDP Growth'
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            fontSize: 16,
+                            callback: function(value, index, values) {
+                                return value + '%';
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+</html>
